@@ -30,7 +30,65 @@ v = math.sqrt(math.tanh(x*y*z))
 print("v =", v)
 
 # %%Q4
-import math
-y = math.tanh(x)
+import numpy as np
+import matplotlib.pyplot as plt
 
-# %%
+x = np.linspace(0, 4, 500) # 0 to 4 w/ 500 points
+y = np.tanh(x)
+
+plt.plot(x,y)
+plt.xlabel("x")
+plt.ylabel("tan(h)")
+plt.title( "y = tanh(x)")
+plt.grid(True)
+plt.show()
+
+
+# %% Q5
+import numpy as np # for complex numbers
+x = -4 + 1j
+y = 3j
+
+z = np.array([x**y, x*(y**2), np.exp(np.sqrt(x))])
+
+magnitude_sqrd = np.sum(np.abs(z)**2)
+
+print(f"The magnitude squared is {magnitude_sqrd:.2f}")
+
+# Q6 
+m = np.abs(z)
+p = np.angle(z) # angle does in rad and deg does in deg
+
+print(f"m = {m}\np = {p}")
+
+# %% Q7
+import numpy as np
+
+x = np.array([[1, 2, -3],
+             [4, 8, 8],
+             [2, 2, 4]])
+
+y = x + x.T @ x + x @ x @ x # @ is the matrix multiplication, can't use *
+print(f"y = {y}")
+# %% Q8 triple check ts cuz my 0s are neg !!
+import numpy as np
+
+A = np.array([[1, 2, -3],
+              [4, 8, 8],
+              [2, 2, 4]])
+
+B = np.array([[5, 5, -3],
+              [4, 8, 8],
+              [2, 2, 4]])
+
+zeros = np.zeros((3,3)) # 3x3 zero matrix
+
+big_array = np.block([[A, B],
+                      [zeros, A]
+                      ])
+
+x = np.array([1,0,0,0,0,0])
+result = np.linalg.solve(big_array, x)
+
+print(f"The solution is {result}")
+# %% Q9
